@@ -10,23 +10,36 @@ public:
 		return (hours*60*60)+minute*60+second;
 	}
 	void set_time(int &hours, int &minute, int &second){
-		if((hours<24&&hours>=0)&&(second<60&&second>=0)&&(minute<60&&minute>=0)){
+		try{set_hours(hours);}
+		catch(int test){cout<<"Not right hours: "<<test<<endl;}
+		try{set_minute(minute);}
+		catch(int test){cout<<"Not right minute: "<<test<<endl;}
+		try{set_second(second);}
+		catch(int test){cout<<"Not right second: "<<test<<endl;}
+	}
+	void set_hours(int hours){
+		if(hours<24&&hours>=0){	
 			this->hours=hours;
+		}
+		else{
+			throw(hours);
+		}
+	}
+	void set_minute(int minute){
+		if(minute<60&&minute>=0){
 			this->minute=minute;
+		}
+		else{
+			throw(minute);
+		}
+	}
+	void set_second(int second){
+		if(second<60&&second>=0){
 			this->second=second;
 		}
 		else{
-			cout<<"ERROR"<<endl;
+			throw(second);
 		}
-	}
-	void set_hours(int hours){
-		this->hours=hours;
-	}
-	void set_minute(int minute){
-		this->minute=minute;
-	}
-	void set_second(int second){
-		this->second=second;
 	}
 	int get_hours(){
 		return hours;	
